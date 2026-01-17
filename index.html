@@ -1,0 +1,779 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Catalogue Plastique - Produits Alimentaires Sans BPA</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background-color: #f8f9fa;
+            color: #333;
+            line-height: 1.6;
+        }
+        
+        header {
+            background: linear-gradient(135deg, #2c3e50 0%, #4a6491 100%);
+            color: white;
+            padding: 2rem 1rem;
+            text-align: center;
+            border-bottom: 5px solid #e74c3c;
+        }
+        
+        h1 {
+            font-size: 2.5rem;
+            margin-bottom: 0.5rem;
+        }
+        
+        .subtitle {
+            font-size: 1.2rem;
+            opacity: 0.9;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 1rem;
+        }
+        
+        .intro {
+            background-color: white;
+            border-radius: 8px;
+            padding: 2rem;
+            margin: 2rem 0;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            text-align: center;
+        }
+        
+        .intro p {
+            margin-bottom: 1rem;
+            font-size: 1.1rem;
+        }
+        
+        .order-info {
+            background-color: #e8f4fc;
+            border-left: 4px solid #3498db;
+            padding: 1rem;
+            margin: 1.5rem 0;
+            border-radius: 4px;
+        }
+        
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 1.5rem;
+            margin: 2rem 0;
+        }
+        
+        .product-card {
+            background-color: white;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease;
+        }
+        
+        .product-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 6px 12px rgba(0,0,0,0.15);
+        }
+        
+        .product-header {
+            background-color: #2c3e50;
+            color: white;
+            padding: 1rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .product-ref {
+            font-weight: bold;
+            font-size: 1.2rem;
+            color: #f1c40f;
+        }
+        
+        .product-price {
+            font-weight: bold;
+            font-size: 1.3rem;
+            background-color: #e74c3c;
+            padding: 0.3rem 0.8rem;
+            border-radius: 4px;
+        }
+        
+        .product-body {
+            padding: 1.5rem;
+        }
+        
+        .product-title {
+            font-size: 1.2rem;
+            margin-bottom: 1rem;
+            color: #2c3e50;
+            font-weight: 600;
+        }
+        
+        .product-desc {
+            color: #555;
+            margin-bottom: 1.5rem;
+        }
+        
+        .product-features {
+            background-color: #f8f9fa;
+            padding: 1rem;
+            border-radius: 4px;
+            margin-top: 1rem;
+        }
+        
+        .product-features ul {
+            padding-left: 1.2rem;
+        }
+        
+        .product-features li {
+            margin-bottom: 0.3rem;
+        }
+        
+        .order-btn {
+            display: block;
+            width: 100%;
+            background-color: #27ae60;
+            color: white;
+            border: none;
+            padding: 0.8rem;
+            font-size: 1rem;
+            font-weight: bold;
+            border-radius: 4px;
+            cursor: pointer;
+            text-align: center;
+            margin-top: 1rem;
+            transition: background-color 0.3s;
+        }
+        
+        .order-btn:hover {
+            background-color: #219653;
+        }
+        
+        .category-title {
+            grid-column: 1 / -1;
+            text-align: center;
+            margin: 2rem 0 1rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 2px solid #3498db;
+            color: #2c3e50;
+        }
+        
+        footer {
+            background-color: #2c3e50;
+            color: white;
+            text-align: center;
+            padding: 2rem 1rem;
+            margin-top: 3rem;
+        }
+        
+        @media (max-width: 768px) {
+            .products-grid {
+                grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            }
+            
+            h1 {
+                font-size: 2rem;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .products-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            h1 {
+                font-size: 1.7rem;
+            }
+            
+            .container {
+                padding: 0.5rem;
+            }
+        }
+        
+        .bpa-badge {
+            display: inline-block;
+            background-color: #27ae60;
+            color: white;
+            padding: 0.3rem 0.6rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: bold;
+            margin-bottom: 0.5rem;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>CATALOGUE PLASTIQUE</h1>
+        <p class="subtitle">Produits alimentaires en plastique sans BPA de haute qualité - Design empilable et coloré pour une conservation optimale</p>
+    </header>
+    
+    <div class="container">
+        <div class="intro">
+            <h2>Catalogue de produits plastiques alimentaires</h2>
+            <p>Découvrez notre sélection de récipients alimentaires en plastique de qualité, sans BPA, hermétiques et empilables pour une conservation optimale de vos aliments.</p>
+            <p>Tous nos produits sont conçus pour être pratiques, durables et adaptés à un usage quotidien en cuisine.</p>
+            
+            <div class="order-info">
+                <h3>Comment commander ?</h3>
+                <p>Pour commander un produit, envoyez un message avec le <strong>numéro de référence du produit</strong> qui vous intéresse.</p>
+            </div>
+        </div>
+        
+        <h2 class="category-title">RÉCIPIENTS ALIMENTAIRES</h2>
+        <div class="products-grid">
+            <!-- Produit 1 -->
+            <div class="product-card">
+                <div class="product-header">
+                    <span class="product-ref">Réf 353</span>
+                    <span class="product-price">2,50€</span>
+                </div>
+                <div class="product-body">
+                    <div class="bpa-badge">SANS BPA</div>
+                    <h3 class="product-title">Capacité 2,2 L</h3>
+                    <p class="product-desc">Plastique alimentaire sans BPA de haute qualité, solide et hermétique. Idéal pour conserver vos plats en toute tranquillité.</p>
+                    <div class="product-features">
+                        <ul>
+                            <li>Capacité : 2,2 litres</li>
+                            <li>Plastique alimentaire haute qualité</li>
+                            <li>Hermétique et solide</li>
+                            <li>Sans BPA</li>
+                        </ul>
+                    </div>
+                    <button class="order-btn">COMMANDER - Indiquez "Réf 353" en message</button>
+                </div>
+            </div>
+            
+            <!-- Produit 2 -->
+            <div class="product-card">
+                <div class="product-header">
+                    <span class="product-ref">Réf 204</span>
+                    <span class="product-price">2€</span>
+                </div>
+                <div class="product-body">
+                    <div class="bpa-badge">SANS BPA</div>
+                    <h3 class="product-title">Boîte rectangulaire 3,8L</h3>
+                    <p class="product-desc">Récipient alimentaire en plastique transparent avec couvercle rouge. Design empilable et coloré pour conservation optimale.</p>
+                    <div class="product-features">
+                        <ul>
+                            <li>Capacité : 3,8 litres</li>
+                            <li>Format rectangulaire</li>
+                            <li>Couvercle rouge</li>
+                            <li>Design empilable</li>
+                            <li>Sans BPA</li>
+                        </ul>
+                    </div>
+                    <button class="order-btn">COMMANDER - Indiquez "Réf 204" en message</button>
+                </div>
+            </div>
+            
+            <!-- Produit 3 -->
+            <div class="product-card">
+                <div class="product-header">
+                    <span class="product-ref">Réf 355</span>
+                    <span class="product-price">2€</span>
+                </div>
+                <div class="product-body">
+                    <div class="bpa-badge">SANS BPA</div>
+                    <h3 class="product-title">Cocotte ronde 2L</h3>
+                    <p class="product-desc">Récipient alimentaire en plastique vert fluo avec couvercle. Design empilable et coloré pour conservation optimale.</p>
+                    <div class="product-features">
+                        <ul>
+                            <li>Capacité : 2 litres</li>
+                            <li>Cocotte ronde</li>
+                            <li>Couleur vert fluo</li>
+                            <li>Design empilable</li>
+                            <li>Sans BPA</li>
+                        </ul>
+                    </div>
+                    <button class="order-btn">COMMANDER - Indiquez "Réf 355" en message</button>
+                </div>
+            </div>
+            
+            <!-- Produit 4 -->
+            <div class="product-card">
+                <div class="product-header">
+                    <span class="product-ref">Réf 205</span>
+                    <span class="product-price">2€</span>
+                </div>
+                <div class="product-body">
+                    <div class="bpa-badge">SANS BPA</div>
+                    <h3 class="product-title">Cocotte ronde 3L</h3>
+                    <p class="product-desc">Récipient alimentaire en plastique transparent avec couvercle rouge. Design empilable et coloré pour conservation optimale.</p>
+                    <div class="product-features">
+                        <ul>
+                            <li>Capacité : 3 litres</li>
+                            <li>Cocotte ronde</li>
+                            <li>Plastique transparent</li>
+                            <li>Couvercle rouge</li>
+                            <li>Sans BPA</li>
+                        </ul>
+                    </div>
+                    <button class="order-btn">COMMANDER - Indiquez "Réf 205" en message</button>
+                </div>
+            </div>
+            
+            <!-- Produit 5 -->
+            <div class="product-card">
+                <div class="product-header">
+                    <span class="product-ref">Réf 208</span>
+                    <span class="product-price">2€</span>
+                </div>
+                <div class="product-body">
+                    <div class="bpa-badge">SANS BPA</div>
+                    <h3 class="product-title">Boîte carrée 3L</h3>
+                    <p class="product-desc">Récipient alimentaire en plastique transparent avec couvercle rouge. Design empilable et coloré pour conservation optimale.</p>
+                    <div class="product-features">
+                        <ul>
+                            <li>Capacité : 3 litres</li>
+                            <li>Format carré</li>
+                            <li>Plastique transparent</li>
+                            <li>Couvercle rouge</li>
+                            <li>Sans BPA</li>
+                        </ul>
+                    </div>
+                    <button class="order-btn">COMMANDER - Indiquez "Réf 208" en message</button>
+                </div>
+            </div>
+            
+            <!-- Produit 6 -->
+            <div class="product-card">
+                <div class="product-header">
+                    <span class="product-ref">Réf 354</span>
+                    <span class="product-price">2€</span>
+                </div>
+                <div class="product-body">
+                    <div class="bpa-badge">SANS BPA</div>
+                    <h3 class="product-title">Boîte carrée 2L</h3>
+                    <p class="product-desc">Récipient alimentaire en plastique rouge avec couvercle transparent. Design empilable et coloré pour conservation optimale.</p>
+                    <div class="product-features">
+                        <ul>
+                            <li>Capacité : 2 litres</li>
+                            <li>Format carré</li>
+                            <li>Plastique rouge</li>
+                            <li>Couvercle transparent</li>
+                            <li>Sans BPA</li>
+                        </ul>
+                    </div>
+                    <button class="order-btn">COMMANDER - Indiquez "Réf 354" en message</button>
+                </div>
+            </div>
+        </div>
+        
+        <h2 class="category-title">BOÎTES ET LOTS</h2>
+        <div class="products-grid">
+            <!-- Produit 7 -->
+            <div class="product-card">
+                <div class="product-header">
+                    <span class="product-ref">Réf 100</span>
+                    <span class="product-price">2€</span>
+                </div>
+                <div class="product-body">
+                    <div class="bpa-badge">SANS BPA</div>
+                    <h3 class="product-title">Boîte Céréales</h3>
+                    <p class="product-desc">Récipient alimentaire en plastique transparent avec couvercle rouge flip-top. Design empilable et coloré pour conservation optimale.</p>
+                    <div class="product-features">
+                        <ul>
+                            <li>Spécial céréales</li>
+                            <li>Couvercle flip-top rouge</li>
+                            <li>Plastique transparent</li>
+                            <li>Design empilable</li>
+                            <li>Sans BPA</li>
+                        </ul>
+                    </div>
+                    <button class="order-btn">COMMANDER - Indiquez "Réf 100" en message</button>
+                </div>
+            </div>
+            
+            <!-- Produit 8 -->
+            <div class="product-card">
+                <div class="product-header">
+                    <span class="product-ref">Réf 437</span>
+                    <span class="product-price">2€</span>
+                </div>
+                <div class="product-body">
+                    <div class="bpa-badge">SANS BPA</div>
+                    <h3 class="product-title">Lot de 3 petites boîtes carrées 0,25L</h3>
+                    <p class="product-desc">Boîtes empilables et hermétiques pour sauces, snacks, portions enfants ou lunch. Idéales pour frigo, micro-ondes et transport.</p>
+                    <div class="product-features">
+                        <ul>
+                            <li>Lot de 3 boîtes</li>
+                            <li>Capacité : 0,25L chacune</li>
+                            <li>Hermétiques et empilables</li>
+                            <li>Idéales pour portions individuelles</li>
+                            <li>Micro-ondables</li>
+                        </ul>
+                    </div>
+                    <button class="order-btn">COMMANDER - Indiquez "Réf 437" en message</button>
+                </div>
+            </div>
+            
+            <!-- Produit 9 -->
+            <div class="product-card">
+                <div class="product-header">
+                    <span class="product-ref">Réf 265 C</span>
+                    <span class="product-price">2€</span>
+                </div>
+                <div class="product-body">
+                    <div class="bpa-badge">SANS BPA</div>
+                    <h3 class="product-title">Duo carrées transparentes 1L</h3>
+                    <p class="product-desc">Boîtes avec couvercle lime clips hermétique, idéales pour repas, légumes, restes, lunch box ou frigo. Micro-ondables et empilables.</p>
+                    <div class="product-features">
+                        <ul>
+                            <li>Duo de boîtes carrées</li>
+                            <li>Capacité : 1L chacune</li>
+                            <li>Couvercle lime clips hermétique</li>
+                            <li>Micro-ondables et empilables</li>
+                            <li>Pour un rangement optimisé</li>
+                        </ul>
+                    </div>
+                    <button class="order-btn">COMMANDER - Indiquez "Réf 265 C" en message</button>
+                </div>
+            </div>
+            
+            <!-- Produit 10 -->
+            <div class="product-card">
+                <div class="product-header">
+                    <span class="product-ref">Réf 265 R</span>
+                    <span class="product-price">2€</span>
+                </div>
+                <div class="product-body">
+                    <div class="bpa-badge">SANS BPA</div>
+                    <h3 class="product-title">Duo rondes transparentes 1L</h3>
+                    <p class="product-desc">Boîtes avec couvercle lime clips hermétique, idéales pour repas, légumes, restes, lunch box ou frigo. Micro-ondables et empilables.</p>
+                    <div class="product-features">
+                        <ul>
+                            <li>Duo de boîtes rondes</li>
+                            <li>Capacité : 1L chacune</li>
+                            <li>Couvercle lime clips hermétique</li>
+                            <li>Micro-ondables et empilables</li>
+                            <li>Pour un rangement optimisé</li>
+                        </ul>
+                    </div>
+                    <button class="order-btn">COMMANDER - Indiquez "Réf 265 R" en message</button>
+                </div>
+            </div>
+            
+            <!-- Produit 11 -->
+            <div class="product-card">
+                <div class="product-header">
+                    <span class="product-ref">Réf 265 B</span>
+                    <span class="product-price">2€</span>
+                </div>
+                <div class="product-body">
+                    <div class="bpa-badge">SANS BPA</div>
+                    <h3 class="product-title">Duo rectangulaires transparentes 1L</h3>
+                    <p class="product-desc">Boîtes avec couvercle lime clips hermétique, idéales pour repas, légumes, restes, lunch box ou frigo. Micro-ondables et empilables.</p>
+                    <div class="product-features">
+                        <ul>
+                            <li>Duo de boîtes rectangulaires</li>
+                            <li>Capacité : 1L chacune</li>
+                            <li>Couvercle lime clips hermétique</li>
+                            <li>Micro-ondables et empilables</li>
+                            <li>Pour un rangement optimisé</li>
+                        </ul>
+                    </div>
+                    <button class="order-btn">COMMANDER - Indiquez "Réf 265 B" en message</button>
+                </div>
+            </div>
+            
+            <!-- Produit 12 -->
+            <div class="product-card">
+                <div class="product-header">
+                    <span class="product-ref">Réf 112</span>
+                    <span class="product-price">2€</span>
+                </div>
+                <div class="product-body">
+                    <div class="bpa-badge">SANS BPA</div>
+                    <h3 class="product-title">Boîte à sandwich ovale</h3>
+                    <p class="product-desc">Contenant ovale ergonomique pour sandwichs, couvercle clips hermétique micro-ondable. Design coloré fun parfait pour lunch box quotidienne.</p>
+                    <div class="product-features">
+                        <ul>
+                            <li>Format ovale ergonomique</li>
+                            <li>Pour sandwichs</li>
+                            <li>Couvercle clips hermétique</li>
+                            <li>Micro-ondable</li>
+                            <li>Design coloré fun</li>
+                        </ul>
+                    </div>
+                    <button class="order-btn">COMMANDER - Indiquez "Réf 112" en message</button>
+                </div>
+            </div>
+        </div>
+        
+        <h2 class="category-title">ACCESSOIRES DE CUISINE</h2>
+        <div class="products-grid">
+            <!-- Produit 13 -->
+            <div class="product-card">
+                <div class="product-header">
+                    <span class="product-ref">Réf 103</span>
+                    <span class="product-price">2€</span>
+                </div>
+                <div class="product-body">
+                    <h3 class="product-title">Passoire plastique couleur menthe</h3>
+                    <p class="product-desc">Passoire robuste avec poignées ergonomiques, mailles fines pour rincer fruits, légumes, pâtes ou salades. Base stable, facile à vider et ranger.</p>
+                    <div class="product-features">
+                        <ul>
+                            <li>Couleur menthe</li>
+                            <li>Poignées ergonomiques</li>
+                            <li>Mailles fines</li>
+                            <li>Base stable</li>
+                            <li>Indispensable en cuisine</li>
+                        </ul>
+                    </div>
+                    <button class="order-btn">COMMANDER - Indiquez "Réf 103" en message</button>
+                </div>
+            </div>
+            
+            <!-- Produit 14 -->
+            <div class="product-card">
+                <div class="product-header">
+                    <span class="product-ref">Réf 412</span>
+                    <span class="product-price">2€</span>
+                </div>
+                <div class="product-body">
+                    <h3 class="product-title">Grande bassine 7 litres vert vif</h3>
+                    <p class="product-desc">Bassine avec bords arrondis confortables pour lessive, vaisselle, pâtisserie ou jardinage. Solide, facile à nettoyer, pour usage familial intensif.</p>
+                    <div class="product-features">
+                        <ul>
+                            <li>Capacité : 7 litres</li>
+                            <li>Couleur vert vif</li>
+                            <li>Bords arrondis confortables</li>
+                            <li>Usage polyvalent</li>
+                            <li>Pour usage familial intensif</li>
+                        </ul>
+                    </div>
+                    <button class="order-btn">COMMANDER - Indiquez "Réf 412" en message</button>
+                </div>
+            </div>
+            
+            <!-- Produit 15 -->
+            <div class="product-card">
+                <div class="product-header">
+                    <span class="product-ref">Réf 102</span>
+                    <span class="product-price">2€</span>
+                </div>
+                <div class="product-body">
+                    <h3 class="product-title">Grand saladier rond</h3>
+                    <p class="product-desc">Saladier rond en plastique robuste et élégant, idéal pour mélanger salades, pâtes, fruits ou pâtisseries. Empilable, léger et facile à nettoyer.</p>
+                    <div class="product-features">
+                        <ul>
+                            <li>Format rond</li>
+                            <li>Plastique robuste et élégant</li>
+                            <li>Idéal pour mélanges</li>
+                            <li>Empilable et léger</li>
+                            <li>Facile à nettoyer</li>
+                        </ul>
+                    </div>
+                    <button class="order-btn">COMMANDER - Indiquez "Réf 102" en message</button>
+                </div>
+            </div>
+            
+            <!-- Produit 16 -->
+            <div class="product-card">
+                <div class="product-header">
+                    <span class="product-ref">Réf 104</span>
+                    <span class="product-price">2,50€</span>
+                </div>
+                <div class="product-body">
+                    <h3 class="product-title">Grande bassine rectangulaire</h3>
+                    <p class="product-desc">Bassine avec bords ondulés ergonomiques pour prise en main facile. Parfaite pour vaisselle, linge, jardinage, bain des pieds ou rinçage légumes.</p>
+                    <div class="product-features">
+                        <ul>
+                            <li>Format rectangulaire</li>
+                            <li>Bords ondulés ergonomiques</li>
+                            <li>Prise en main facile</li>
+                            <li>Usage polyvalent</li>
+                            <li>Ultra-solide</li>
+                        </ul>
+                    </div>
+                    <button class="order-btn">COMMANDER - Indiquez "Réf 104" en message</button>
+                </div>
+            </div>
+            
+            <!-- Produit 17 -->
+            <div class="product-card">
+                <div class="product-header">
+                    <span class="product-ref">Réf 107</span>
+                    <span class="product-price">2€</span>
+                </div>
+                <div class="product-body">
+                    <div class="bpa-badge">SANS BPA</div>
+                    <h3 class="product-title">Bol transparent large 2,5L avec couvercle</h3>
+                    <p class="product-desc">Bol en plastique alimentaire avec couvercle hermétique (clips + opercule central). Idéal pour mixer salades, pâtes, marinades, fruits ou restes.</p>
+                    <div class="product-features">
+                        <ul>
+                            <li>Capacité : 2,5 litres</li>
+                            <li>Bol transparent</li>
+                            <li>Couvercle hermétique</li>
+                            <li>Pour préparer, servir et conserver</li>
+                            <li>Micro-ondable</li>
+                        </ul>
+                    </div>
+                    <button class="order-btn">COMMANDER - Indiquez "Réf 107" en message</button>
+                </div>
+            </div>
+            
+            <!-- Produit 18 -->
+            <div class="product-card">
+                <div class="product-header">
+                    <span class="product-ref">Réf 106</span>
+                    <span class="product-price">3€</span>
+                </div>
+                <div class="product-body">
+                    <div class="bpa-badge">SANS BPA</div>
+                    <h3 class="product-title">Bol gradué avec couvercle bleu</h3>
+                    <p class="product-desc">Bol gradué avec couvercle bleu anti-éclaboussures, poignée confortable et large base stable. Parfait pour sauces, pâtes à crêpes, marinades.</p>
+                    <div class="product-features">
+                        <ul>
+                            <li>Bol gradué</li>
+                            <li>Couvercle bleu anti-éclaboussures</li>
+                            <li>Poignée confortable</li>
+                            <li>Large base stable</li>
+                            <li>Pour stockage au frigo</li>
+                        </ul>
+                    </div>
+                    <button class="order-btn">COMMANDER - Indiquez "Réf 106" en message</button>
+                </div>
+            </div>
+            
+            <!-- Produit 19 -->
+            <div class="product-card">
+                <div class="product-header">
+                    <span class="product-ref">Réf 101</span>
+                    <span class="product-price">2€</span>
+                </div>
+                <div class="product-body">
+                    <div class="bpa-badge">SANS BPA</div>
+                    <h3 class="product-title">Pichet transparent 1,8L</h3>
+                    <p class="product-desc">Pichet avec poignée large et couvercle hermétique. Parfait pour eau, jus ou infusions au frigo.</p>
+                    <div class="product-features">
+                        <ul>
+                            <li>Capacité : 1,8 litres</li>
+                            <li>Pichet transparent</li>
+                            <li>Poignée large</li>
+                            <li>Couvercle hermétique</li>
+                            <li>Pour boissons au frigo</li>
+                        </ul>
+                    </div>
+                    <button class="order-btn">COMMANDER - Indiquez "Réf 101" en message</button>
+                </div>
+            </div>
+            
+            <!-- Produit 20 -->
+            <div class="product-card">
+                <div class="product-header">
+                    <span class="product-ref">Réf 211</span>
+                    <span class="product-price">2€</span>
+                </div>
+                <div class="product-body">
+                    <h3 class="product-title">Couteau festif en forme d'épée</h3>
+                    <p class="product-desc">Couteau en plastique dentelé en forme d'épée. Parfait pour découper gâteaux d'anniversaire de manière festive.</p>
+                    <div class="product-features">
+                        <ul>
+                            <li>Forme d'épée</li>
+                            <li>Plastique dentelé</li>
+                            <li>Usage festif</li>
+                            <li>Pour gâteaux d'anniversaire</li>
+                            <li>Idée cadeau originale</li>
+                        </ul>
+                    </div>
+                    <button class="order-btn">COMMANDER - Indiquez "Réf 211" en message</button>
+                </div>
+            </div>
+            
+            <!-- Produit 21 -->
+            <div class="product-card">
+                <div class="product-header">
+                    <span class="product-ref">Réf 210</span>
+                    <span class="product-price">2€</span>
+                </div>
+                <div class="product-body">
+                    <h3 class="product-title">Brosse avec réservoir savon intégré</h3>
+                    <p class="product-desc">Brosse avec réservoir savon intégré et pompe doseuse, poils souples. Idéale pour vaisselle rapide et économique.</p>
+                    <div class="product-features">
+                        <ul>
+                            <li>Réservoir savon intégré</li>
+                            <li>Pompe doseuse</li>
+                            <li>Poils souples</li>
+                            <li>Pour vaisselle rapide</li>
+                            <li>Économique</li>
+                        </ul>
+                    </div>
+                    <button class="order-btn">COMMANDER - Indiquez "Réf 210" en message</button>
+                </div>
+            </div>
+            
+            <!-- Produit 22 -->
+            <div class="product-card">
+                <div class="product-header">
+                    <span class="product-ref">Réf 310</span>
+                    <span class="product-price">2€</span>
+                </div>
+                <div class="product-body">
+                    <h3 class="product-title">Pinces avec poignées silicone</h3>
+                    <p class="product-desc">Pinces avec poignées silicone anti-brûlure et anneau suspension. Pour saisir, retourner et servir en toute sécurité.</p>
+                    <div class="product-features">
+                        <ul>
+                            <li>Poignées silicone anti-brûlure</li>
+                            <li>Anneau suspension</li>
+                            <li>Pour saisir et retourner</li>
+                            <li>Pour servir</li>
+                            <li>Sécurité en cuisine</li>
+                        </ul>
+                    </div>
+                    <button class="order-btn">COMMANDER - Indiquez "Réf 310" en message</button>
+                </div>
+            </div>
+        </div>
+        
+        <div class="intro">
+            <h2>Comment commander vos produits ?</h2>
+            <p>Pour commander, envoyez simplement un message avec le <strong>numéro de référence du produit</strong> qui vous intéresse.</p>
+            <p>Exemple : "Je souhaite commander le produit Réf 353"</p>
+            <p>Tous nos produits sont de haute qualité, sans BPA et adaptés à un usage alimentaire.</p>
+            <div class="order-info">
+                <h3>Livraison et paiement</h3>
+                <p>Les modalités de livraison et de paiement seront convenues par message après votre commande.</p>
+            </div>
+        </div>
+    </div>
+    
+    <footer>
+        <p>© 2023 Catalogue Plastique - Tous les produits sont sans BPA et adaptés à un usage alimentaire</p>
+        <p>Commande par message avec le numéro de référence du produit</p>
+    </footer>
+    
+    <script>
+        // Ajouter un effet interactif aux boutons de commande
+        document.querySelectorAll('.order-btn').forEach(button => {
+            button.addEventListener('click', function() {
+                const ref = this.textContent.match(/Réf [A-Za-z0-9]+/)[0];
+                alert(`Pour commander le produit ${ref}, envoyez un message avec cette référence.`);
+            });
+        });
+        
+        // Surligner visuellement les produits sans BPA
+        document.addEventListener('DOMContentLoaded', function() {
+            const bpaProducts = document.querySelectorAll('.bpa-badge');
+            bpaProducts.forEach(badge => {
+                const card = badge.closest('.product-card');
+                if (card) {
+                    card.style.border = '2px solid #27ae60';
+                }
+            });
+        });
+    </script>
+</body>
+</html>
